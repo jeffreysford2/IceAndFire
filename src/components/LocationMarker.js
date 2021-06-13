@@ -1,10 +1,16 @@
 import { Icon } from '@iconify/react'
-import locationIcon from '@iconify/icons-mdi/fire-alert'
+import fireIcon from '@iconify/icons-mdi/fire-alert'
+import snowflakeIcon from '@iconify/icons-mdi/snowflake'
 
-const LocationMarker = ({ lat, lng, onClick }) => {
+const LocationMarker = ({ eventType, lat, lng, onClick }) => {
+
     return (
         <div className="location-marker" onClick={onClick}>
-            <Icon icon={locationIcon} className="location-icon" />
+            {eventType === 8 ?
+                <Icon icon={fireIcon} className="fire-icon" />
+                :
+                <Icon icon={snowflakeIcon} className="snowflake-icon" />
+            }
         </div>
     )
 }

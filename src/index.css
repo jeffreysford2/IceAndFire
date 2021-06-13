@@ -9,9 +9,13 @@ body {
   position: relative;
 }
 
-.location-icon {
+.fire-icon {
   font-size: 2rem;
   color: red;
+}
+
+.snowflake-icon {
+  font-size: 2rem;
 }
 
 .location-info {

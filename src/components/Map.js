@@ -9,7 +9,7 @@ const Map = ({ eventData, center, zoom }) => {
 
     const markers = eventData.map(ev => {
         if (ev.categories[0].id === 8 || ev.categories[0].id === 15) {
-            return <LocationMarker key={ev.id} eventType={ev.categories[0].id} lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]} onClick={() => setLocationInfo({ id: ev.id, title: ev.title })} />
+            return <LocationMarker key={ev.id} eventType={ev.categories[0].id} lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]} onClick={() => setLocationInfo({ id: ev.id, title: ev.title, eventType: ev.categories[0].title })} />
         }
         return null
     })
@@ -30,8 +30,8 @@ const Map = ({ eventData, center, zoom }) => {
 
 Map.defaultProps = {
     center: {
-        lat: 42.3265,
-        lng: -122.8756
+        lat: 39,
+        lng: -110
     },
     zoom: 6
 }

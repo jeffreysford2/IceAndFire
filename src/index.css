@@ -20,7 +20,8 @@ body {
 .snowflake-icon {
   font-size: 2rem;
   position: relative;
-  left: 200px;
+  left: -16px;
+  top: -16px;
 }
 
 .location-info {

@@ -12,10 +12,15 @@ body {
 .fire-icon {
   font-size: 2rem;
   color: red;
+  position: relative;
+  left: -16px;
+  top: -16px;
 }
 
 .snowflake-icon {
   font-size: 2rem;
+  position: relative;
+  left: 200px;
 }
 
 .location-info {

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import Map from './components/Map'
+import axios from "axios"
 
 function App() {
   const [eventData, setEventData] = useState([])
@@ -17,9 +18,18 @@ function App() {
 
     }
     fetchEvents()
-    console.log(eventData)
+    console.log(`eventData: ${eventData}`)
+
+
   }, [])
 
+  useEffect(() => {
+    //console.log(`eventData: ${eventData}`)
+    const newArrayOfEvents = eventData
+    const testArray = [1, 2, 3]
+    console.log(testArray)
+    axios.post('http://localhost:3001/', testArray)
+  }, [])
 
   return (
     <div>

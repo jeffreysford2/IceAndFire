@@ -1,0 +1,32 @@
+const express = require('express');
+const router = express.Router();
+const Event = require("../models/eventModel");
+
+router.route("/").post((req, res) => {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    todaysDate = mm + '/' + dd + '/' + yyyy;
+
+    const arrayOfEvents = req.body;
+    console.log(req.body);
+    console.log('array in routes', arrayOfEvents);
+    console.log(today);
+    const newEvent = new Event({
+        todaysDate,
+        arrayOfEvents
+    });
+    console.log(newEvent);
+    //newEvent.save();
+    newEvent.save(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+    });
+})
+
+module.exports = router;

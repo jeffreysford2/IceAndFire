@@ -12,24 +12,15 @@ function App() {
       setLoading(true)
       const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events')
       const { events } = await res.json()
-
       setEventData(events)
       setLoading(false)
-
     }
     fetchEvents()
-    console.log(`eventData: ${eventData}`)
-
-
   }, [])
 
   useEffect(() => {
-    //console.log(`eventData: ${eventData}`)
-    const newArrayOfEvents = eventData
-    const testArray = [1, 2, 3]
-    console.log(testArray)
-    axios.post('http://localhost:3001/', testArray)
-  }, [])
+    axios.post('http://localhost:3001/', eventData)
+  }, [eventData])
 
   return (
     <div>

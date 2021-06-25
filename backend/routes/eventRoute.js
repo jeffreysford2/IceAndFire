@@ -11,15 +11,10 @@ router.route("/").post((req, res) => {
     todaysDate = mm + '/' + dd + '/' + yyyy;
 
     const arrayOfEvents = req.body;
-    console.log(req.body);
-    console.log('array in routes', arrayOfEvents);
-    console.log(today);
     const newEvent = new Event({
         todaysDate,
         arrayOfEvents
     });
-    console.log(newEvent);
-    //newEvent.save();
     newEvent.save(function (err) {
         if (err) {
             console.log(err);

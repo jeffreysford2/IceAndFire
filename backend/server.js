@@ -16,11 +16,11 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-const fetchAllEvents = async () => {
-    const eventArray = await db.collection("events").find({ "todaysDate": "06/25/2021" })
-    await console.log(`eventArray = ${eventArray}`)
-}
-fetchAllEvents()
+// const fetchAllEvents = async () => {
+//     const eventArray = await db.collection("events").find({ "todaysDate": "06/25/2021" })
+//     await console.log(`eventArray = ${eventArray}`)
+// }
+// fetchAllEvents()
 
 
 app.use("/", require("./routes/eventRoute"));

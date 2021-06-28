@@ -15,6 +15,7 @@ router.route("/").post((req, res) => {
         todaysDate,
         arrayOfEvents
     });
+    console.log(newEvent.arrayOfEvents[0])
     newEvent.save(function (err) {
         if (err) {
             console.log(err);
@@ -25,7 +26,9 @@ router.route("/").post((req, res) => {
 })
 
 router.route("/").get((req, res) => {
-
+    console.log('in get')
+    Event.find()
+        .then(foundEvents => res.json(foundEvents))
 })
 
 module.exports = router;

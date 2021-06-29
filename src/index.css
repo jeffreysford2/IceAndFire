@@ -23,6 +23,18 @@ body {
   left: -16px;
   top: -16px;
 }
+.hurricaneIcon {
+  font-size: 2rem;
+  position: relative;
+  left: -16px;
+  top: -16px;
+}
+.hurricaneIconMini {
+  font-size: 1rem;
+  position: relative;
+  left: -16px;
+  top: -16px;
+}
 
 .location-info {
   position: absolute;

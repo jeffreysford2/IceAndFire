@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react'
 import Map from './components/Map'
+import Slider from './components/Slider'
 import axios from "axios"
 
 function App() {
   const [eventData, setEventData] = useState([])
   const [loading, setLoading] = useState(false)
+  const [date, setDate] = useState(null)
   const [eventDataFromDB, setEventDataFromDB] = useState([{
     _id: '',
     arrayOfEvents: '',
@@ -15,13 +17,14 @@ function App() {
 
   //The following grabs todays info
   useEffect(() => {
+    console.log('running api fetch')
     const fetchEvents = async () => {
       setLoading(true)
       const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events')
       const { events } = await res.json()
       setEventData(events)
       setLoading(false)
-      //await console.log(events)
+      await console.log(events)
     }
     fetchEvents()
   }, [])
@@ -50,6 +53,24 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    //setEvents
+    console.log('running')
+    console.log('date:', date)
+    //console.log(eventDataFromDB[date - 1].arrayOfEvents)
+    if (date === '1') {
+      setEventData(eventDataFromDB[0].arrayOfEvents)
+      console.log('here')
+      console.log(eventData)
+    } else if (date === '2') {
+      setEventData(eventDataFromDB[1].arrayOfEvents)
+      console.log(eventData)
+    } else if (date === '3') {
+      setEventData(eventDataFromDB[2].arrayOfEvents)
+      console.log(eventData)
+    }
+  }, [date])
+
   //eventDataFromDB
   //DAY 1 ----> setEventData(eventDataFromDB[0].arrayOfEvents)
   //DAY 2 ----> setEventData(eventDataFromDB[1].arrayOfEvents)
@@ -58,6 +79,10 @@ function App() {
   return (
     <div>
       {!loading ? <Map eventData={eventData} /> : <h1>Loading</h1>}
+      {!loading ? <Slider
+
+        setDate={setDate}
+      /> : null}
     </div>
   );
 }

@@ -49,3 +49,18 @@ body {
 .location-marker:hover {
   cursor: pointer;
 }
+.test-button-1 {
+  position: absolute;
+  left: 100px;
+  bottom: 50px;
+}
+.test-button-2 {
+  position: absolute;
+  left: 200px;
+  bottom: 50px;
+}
+.test-button-3 {
+  position: absolute;
+  left: 300px;
+  bottom: 50px;
+}

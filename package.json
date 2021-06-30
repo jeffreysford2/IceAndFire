@@ -5,6 +5,8 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@iconify/icons-mdi": "^1.1.15",
+    "@material-ui/core": "^4.11.4",
+    "@material/slider": "^11.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

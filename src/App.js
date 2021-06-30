@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import Map from './components/Map'
-import Slider from './components/Slider'
+import SliderComponent from './components/SliderComponent'
 import axios from "axios"
 
 function App() {
@@ -79,7 +79,7 @@ function App() {
   return (
     <div>
       {!loading ? <Map eventData={eventData} /> : <h1>Loading</h1>}
-      {!loading ? <Slider
+      {!loading ? <SliderComponent
 
         setDate={setDate}
       /> : null}

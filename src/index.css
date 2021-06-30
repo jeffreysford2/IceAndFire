@@ -76,3 +76,13 @@ body {
   left: 300px;
   bottom: 50px;
 }
+.date-slider {
+  position: absolute;
+
+  bottom: 50px;
+}
+.slider-text {
+  position: absolute;
+
+  bottom: 50px;
+}

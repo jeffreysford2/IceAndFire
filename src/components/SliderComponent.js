@@ -1,29 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const SliderComponent = (props) => {
+    const [iterateThrough, setIterateThrough] = useState(false);
+    const [localDate, setLocalDate] = useState(null)
 
-    const [eventDate, setEventDate] = useState(props)
-    const [sliderValue, setSliderValue] = useState(2)
-    console.log('props:', props)
 
-    const handleClick = (e) => {
-        console.log(e)
-        props.setDate(e.target.value);
-        //props.setDate(props.name)
+    const isFirstRun = useRef(true);
+
+
+    const valuetext = (value) => {
+        if (!isFirstRun.current) {
+            setLocalDate(value)
+        }
+
     }
-    const handleInputChange = (e) => {
-        console.log(e.target.value)
-        setSliderValue(parseInt(e.target.value))
-        //props.setDate(props.name)
-    }
+    useEffect(() => {
+        if (isFirstRun.current) {
+            isFirstRun.current = false;
+            return;
+        }
 
-    function valuetext(value) {
-        setEventDate(value)
-        props.setDate(value)
-        return `${value}°C`;
+        console.log("Effect was run");
+    });
+
+
+    useEffect(() => {
+        console.log('local date changed')
+        props.setDate(localDate);
+    }, [localDate])
+
+
+    //If I want a play button to iterate though dates
+    const iterationHandler = () => {
+
     }
 
     const useStyles = makeStyles({
@@ -33,7 +45,6 @@ const SliderComponent = (props) => {
     });
     const classes = useStyles();
 
-
     return (
         <div>
             <Typography id="discrete-slider" className="slider-text" gutterBottom>
@@ -41,14 +52,18 @@ const SliderComponent = (props) => {
             </Typography>
             <Slider
                 className="date-slider"
-                defaultValue={0}
+                defaultValue={null}
                 getAriaValueText={valuetext}
+
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
                 step={1}
                 marks
                 min={0}
-                max={2}
+                max={3}
+            //value={iterateThrough ? iterationHandler : 0}
+            //valueLabelDisplay="on"
+            //onChange={handleSliderChange}
             //value={sliderValue}
             //onChange={handleInputChange}
             />

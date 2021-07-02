@@ -13,6 +13,7 @@ function App() {
     arrayOfEvents: '',
     todaysDate: ''
   }])
+  const [liveEvents, setLiveEvents] = useState([])
 
 
   //The following grabs todays info
@@ -23,6 +24,7 @@ function App() {
       const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events')
       const { events } = await res.json()
       setEventData(events)
+      setLiveEvents(events)
       setLoading(false)
       await console.log(events)
     }
@@ -53,21 +55,15 @@ function App() {
 
   }, [])
 
+  //If date is changed, set eventData to the events from the specific date from the DB.
+  //I will want to add something that changes date to null, thereby changing eventData to
+  //todays live events.
   useEffect(() => {
-    //setEvents
-    console.log('running')
-    console.log('date:', date)
-    //console.log(eventDataFromDB[date - 1].arrayOfEvents)
-    if (date === 0) {
-      setEventData(eventDataFromDB[0].arrayOfEvents)
-      console.log('here')
-      console.log(eventData)
-    } else if (date === 1) {
-      setEventData(eventDataFromDB[1].arrayOfEvents)
-      console.log(eventData)
-    } else if (date === 2) {
-      setEventData(eventDataFromDB[2].arrayOfEvents)
-      console.log(eventData)
+    console.log(`date = ${date}`)
+    if (date !== null) {
+      setEventData(eventDataFromDB[date].arrayOfEvents)
+    } else {
+      setEventData(liveEvents)
     }
   }, [date])
 
@@ -81,8 +77,8 @@ function App() {
       {!loading ? <Map eventData={eventData} /> : <h1>Loading</h1>}
       <div className="slider-container">
         {!loading ? <SliderComponent
-
           setDate={setDate}
+          date={date}
         /> : null}
       </div>
     </div>

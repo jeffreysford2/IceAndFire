@@ -6,7 +6,8 @@ import Slider from '@material-ui/core/Slider';
 const SliderComponent = (props) => {
 
     const [eventDate, setEventDate] = useState(props)
-    console.log(props)
+    const [sliderValue, setSliderValue] = useState(2)
+    console.log('props:', props)
 
     const handleClick = (e) => {
         console.log(e)
@@ -14,9 +15,15 @@ const SliderComponent = (props) => {
         //props.setDate(props.name)
     }
     const handleInputChange = (e) => {
-        console.log(e.target.textContent)
-        props.setDate(e.target.value);
+        console.log(e.target.value)
+        setSliderValue(parseInt(e.target.value))
         //props.setDate(props.name)
+    }
+
+    function valuetext(value) {
+        setEventDate(value)
+        props.setDate(value)
+        return `${value}°C`;
     }
 
     const useStyles = makeStyles({
@@ -24,15 +31,13 @@ const SliderComponent = (props) => {
             width: 300,
         },
     });
+    const classes = useStyles();
 
-    function valuetext(value) {
-        return `${value}°C`;
-    }
 
     return (
         <div>
             <Typography id="discrete-slider" className="slider-text" gutterBottom>
-                Temperature
+                Date
             </Typography>
             <Slider
                 className="date-slider"
@@ -44,14 +49,15 @@ const SliderComponent = (props) => {
                 marks
                 min={0}
                 max={2}
-                onChange={e => handleInputChange(e, "getAriaValueText")}
+            //value={sliderValue}
+            //onChange={handleInputChange}
             />
 
 
 
-            <button value={1} onClick={e => handleClick(e, "value")} className="test-button-1">1</button>
+            {/* <button value={1} onClick={e => handleClick(e, "value")} className="test-button-1">1</button>
             <button value={2} onClick={e => handleClick(e, "value")} className="test-button-2">2</button>
-            <button value={3} onClick={e => handleClick(e, "value")} className="test-button-3">3</button>
+            <button value={3} onClick={e => handleClick(e, "value")} className="test-button-3">3</button> */}
         </div>
     )
 }

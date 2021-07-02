@@ -78,11 +78,14 @@ body {
 }
 .date-slider {
   position: absolute;
-
   bottom: 50px;
 }
 .slider-text {
   position: absolute;
 
   bottom: 50px;
+}
+.slider-container {
+  width: 80%;
+  margin: auto;
 }

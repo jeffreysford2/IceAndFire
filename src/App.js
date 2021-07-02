@@ -58,14 +58,14 @@ function App() {
     console.log('running')
     console.log('date:', date)
     //console.log(eventDataFromDB[date - 1].arrayOfEvents)
-    if (date === '1') {
+    if (date === 0) {
       setEventData(eventDataFromDB[0].arrayOfEvents)
       console.log('here')
       console.log(eventData)
-    } else if (date === '2') {
+    } else if (date === 1) {
       setEventData(eventDataFromDB[1].arrayOfEvents)
       console.log(eventData)
-    } else if (date === '3') {
+    } else if (date === 2) {
       setEventData(eventDataFromDB[2].arrayOfEvents)
       console.log(eventData)
     }
@@ -79,10 +79,12 @@ function App() {
   return (
     <div>
       {!loading ? <Map eventData={eventData} /> : <h1>Loading</h1>}
-      {!loading ? <SliderComponent
+      <div className="slider-container">
+        {!loading ? <SliderComponent
 
-        setDate={setDate}
-      /> : null}
+          setDate={setDate}
+        /> : null}
+      </div>
     </div>
   );
 }

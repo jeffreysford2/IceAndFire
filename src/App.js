@@ -14,6 +14,7 @@ function App() {
     todaysDate: ''
   }])
   const [liveEvents, setLiveEvents] = useState([])
+  const [dateFormatted, setDateFormatted] = useState('')
 
 
   //The following grabs todays info
@@ -48,6 +49,7 @@ function App() {
       const json = await res.json();
       console.log('json:', json)
       setEventDataFromDB(json)
+
       //setEventData(eventDataFromDB[0].arrayOfEvents)
     }
     fetchNewEvents()
@@ -62,6 +64,7 @@ function App() {
     console.log(`date = ${date}`)
     if (date !== null) {
       setEventData(eventDataFromDB[date].arrayOfEvents)
+      setDateFormatted(eventDataFromDB[date].todaysDate)
     } else {
       setEventData(liveEvents)
     }
@@ -77,6 +80,8 @@ function App() {
       {!loading ? <Map eventData={eventData} /> : <h1>Loading</h1>}
       <div className="slider-container">
         {!loading ? <SliderComponent
+          eventDataLength={eventDataFromDB.length}
+          dateFormatted={dateFormatted}
           setDate={setDate}
           date={date}
         /> : null}

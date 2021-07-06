@@ -6,11 +6,9 @@ import Slider from '@material-ui/core/Slider';
 const SliderComponent = (props) => {
     const [iterateThrough, setIterateThrough] = useState(false);
     const [localDate, setLocalDate] = useState(null)
-
-
     const isFirstRun = useRef(true);
-
-
+    console.log(`EventDataLength: ${props.date}`)
+    console.log(props.eventData)
     const valuetext = (value) => {
         if (!isFirstRun.current) {
             setLocalDate(value)
@@ -22,7 +20,6 @@ const SliderComponent = (props) => {
             isFirstRun.current = false;
             return;
         }
-
         console.log("Effect was run");
     });
 
@@ -47,9 +44,7 @@ const SliderComponent = (props) => {
 
     return (
         <div>
-            <Typography id="discrete-slider" className="slider-text" gutterBottom>
-                Date
-            </Typography>
+
             <Slider
                 className="date-slider"
                 defaultValue={null}
@@ -60,13 +55,17 @@ const SliderComponent = (props) => {
                 step={1}
                 marks
                 min={0}
-                max={3}
+                max={props.eventDataLength - 1}
+                valueLabelDisplay="on"
             //value={iterateThrough ? iterationHandler : 0}
             //valueLabelDisplay="on"
             //onChange={handleSliderChange}
             //value={sliderValue}
             //onChange={handleInputChange}
             />
+            <Typography id="discrete-slider" className="slider-text" gutterBottom>
+                Date: {props.dateFormatted}
+            </Typography>
 
 
 

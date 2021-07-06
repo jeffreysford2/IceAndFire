@@ -30,8 +30,6 @@ const Map = ({ eventData, center, zoom }) => {
         return null
     })
 
-
-
     return (
         <div className="map">
             <GoogleMapReact
@@ -51,7 +49,7 @@ Map.defaultProps = {
         lat: 39,
         lng: -110
     },
-    zoom: 6
+    zoom: 5
 }
 
 export default Map

@@ -7,12 +7,16 @@ const SliderComponent = (props) => {
     const [iterateThrough, setIterateThrough] = useState(false);
     const [localDate, setLocalDate] = useState(null)
     const isFirstRun = useRef(true);
-    console.log(`EventDataLength: ${props.date}`)
-    console.log(props.eventData)
+
+
     const valuetext = (value) => {
         if (!isFirstRun.current) {
             setLocalDate(value)
+            props.setDate(localDate);
+            console.log('valuetext ran')
         }
+
+
 
     }
     useEffect(() => {
@@ -21,20 +25,23 @@ const SliderComponent = (props) => {
             return;
         }
         console.log("Effect was run");
-    });
+    }, []);
 
+    console.log(`localDate: ${localDate}`)
 
-    useEffect(() => {
-        console.log('local date changed')
-        props.setDate(localDate);
-    }, [localDate])
-
-
-    //If I want a play button to iterate though dates
-    const iterationHandler = () => {
-
+    function waitToAllowForTimeTravel() {
+        setTimeout(function () {
+            isFirstRun.current = false;
+        }, 1000);
     }
 
+
+    const handleClick = () => {
+        isFirstRun.current = true;
+        setLocalDate(null);
+        props.setDate(null);
+        waitToAllowForTimeTravel()
+    }
     const useStyles = makeStyles({
         root: {
             width: 300,
@@ -63,9 +70,22 @@ const SliderComponent = (props) => {
             //value={sliderValue}
             //onChange={handleInputChange}
             />
-            <Typography id="discrete-slider" className="slider-text" gutterBottom>
-                Date: {props.dateFormatted}
-            </Typography>
+            {localDate !== null ? (
+                <section>
+                    <Typography id="discrete-slider" className="slider-text" gutterBottom>
+
+                        Date: {props.dateFormatted}
+
+                    </Typography>
+                    <button className="show-live-button" onClick={handleClick}>Show live data</button>
+                </section>
+            ) : (
+                <Typography id="discrete-slider" className="slider-text" gutterBottom>
+                    Showing Live Data
+                </Typography>
+
+            )}
+
 
 
 

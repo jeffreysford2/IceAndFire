@@ -88,3 +88,8 @@ body {
   width: 80%;
   margin: auto;
 }
+.show-live-button {
+  position: absolute;
+  bottom: 10px;
+  left: 300px;
+}

@@ -58,12 +58,12 @@ const SliderComponent = (props) => {
                 getAriaValueText={valuetext}
 
                 aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
+                //valueLabelDisplay="auto"
                 step={1}
                 marks
                 min={0}
                 max={props.eventDataLength - 1}
-                valueLabelDisplay="on"
+            //valueLabelDisplay="on"
             //value={iterateThrough ? iterationHandler : 0}
             //valueLabelDisplay="on"
             //onChange={handleSliderChange}

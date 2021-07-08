@@ -27,7 +27,7 @@ function App() {
       setEventData(events)
       setLiveEvents(events)
       setLoading(false)
-      await console.log(events)
+      //await console.log(events)
     }
     fetchEvents()
   }, [])
@@ -43,17 +43,16 @@ function App() {
 
   //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
   useEffect(() => {
-    console.log('test')
     const fetchNewEvents = async () => {
       const res = await fetch("http://localhost:3001/")
       const json = await res.json();
-      console.log('json:', json)
+      //console.log('json:', json)
       setEventDataFromDB(json)
 
       //setEventData(eventDataFromDB[0].arrayOfEvents)
     }
     fetchNewEvents()
-    console.log(eventData)
+    //console.log(eventData)
 
   }, [])
 
@@ -61,7 +60,7 @@ function App() {
   //I will want to add something that changes date to null, thereby changing eventData to
   //todays live events.
   useEffect(() => {
-    console.log(`date = ${date}`)
+    //console.log(`date = ${date}`)
     if (date !== null) {
       setEventData(eventDataFromDB[date].arrayOfEvents)
       setDateFormatted(eventDataFromDB[date].todaysDate)

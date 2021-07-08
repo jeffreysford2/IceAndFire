@@ -41,7 +41,7 @@ body {
   top: 50px;
   right: 50px;
   width: 300px;
-  min-height: 150px;
+  min-height: 100px;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -103,7 +103,7 @@ body {
   color: #ffffff;
   text-align: center;
   transition: all 0.2s;
-  background-color: rgba(104, 211, 244, 0.5);
+  background-color: rgba(104, 211, 244, 0.9);
 }
 
 .show-live-button:hover {

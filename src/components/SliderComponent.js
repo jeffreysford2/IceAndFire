@@ -4,30 +4,30 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const SliderComponent = (props) => {
-    const [iterateThrough, setIterateThrough] = useState(false);
-    const [localDate, setLocalDate] = useState(null)
+    //const [localDate, setLocalDate] = useState(null)
     const isFirstRun = useRef(true);
 
 
     const valuetext = (value) => {
         if (!isFirstRun.current) {
-            setLocalDate(value)
-            props.setDate(localDate);
-            console.log('valuetext ran')
+            setTimeout(function () {
+                props.setDate(value)
+            }, 50);
+            //props.setDate(localDate);
         }
-
-
-
     }
     useEffect(() => {
         if (isFirstRun.current) {
             isFirstRun.current = false;
             return;
         }
-        console.log("Effect was run");
     }, []);
 
-    console.log(`localDate: ${localDate}`)
+    // useEffect(() => {
+    //     props.setDate(localDate);
+    // }, [localDate]);
+
+    //console.log(`localDate: ${localDate}`)
 
     function waitToAllowForTimeTravel() {
         setTimeout(function () {
@@ -38,16 +38,19 @@ const SliderComponent = (props) => {
 
     const handleClick = () => {
         isFirstRun.current = true;
-        setLocalDate(null);
+        //setLocalDate(null);
         props.setDate(null);
         waitToAllowForTimeTravel()
     }
+
     const useStyles = makeStyles({
         root: {
             width: 300,
         },
     });
     const classes = useStyles();
+
+
 
     return (
         <div>
@@ -56,13 +59,13 @@ const SliderComponent = (props) => {
                 className="date-slider"
                 defaultValue={null}
                 getAriaValueText={valuetext}
-
                 aria-labelledby="discrete-slider"
                 //valueLabelDisplay="auto"
                 step={1}
                 marks
                 min={0}
                 max={props.eventDataLength - 1}
+
             //valueLabelDisplay="on"
             //value={iterateThrough ? iterationHandler : 0}
             //valueLabelDisplay="on"
@@ -70,18 +73,18 @@ const SliderComponent = (props) => {
             //value={sliderValue}
             //onChange={handleInputChange}
             />
-            {localDate !== null ? (
+            {props.date !== null ? (
                 <section>
                     <Typography id="discrete-slider" className="slider-text" gutterBottom>
 
-                        Date: {props.dateFormatted}
+                        Date: {props.dateFormatted} (Click through dates with 'left' and 'right' arrow keys)
 
                     </Typography>
                     <button className="show-live-button" onClick={handleClick}>Show live data</button>
                 </section>
             ) : (
                 <Typography id="discrete-slider" className="slider-text" gutterBottom>
-                    Showing Live Data
+                    Showing Live Data (Click on timeline to view historic data)
                 </Typography>
 
             )}

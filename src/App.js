@@ -46,13 +46,13 @@ function App() {
     const fetchNewEvents = async () => {
       const res = await fetch("http://localhost:3001/")
       const json = await res.json();
-      //console.log('json:', json)
+      console.log('json:', json)
       setEventDataFromDB(json)
 
       //setEventData(eventDataFromDB[0].arrayOfEvents)
     }
     fetchNewEvents()
-    //console.log(eventData)
+    console.log(eventData)
 
   }, [])
 
@@ -68,11 +68,6 @@ function App() {
       setEventData(liveEvents)
     }
   }, [date])
-
-  //eventDataFromDB
-  //DAY 1 ----> setEventData(eventDataFromDB[0].arrayOfEvents)
-  //DAY 2 ----> setEventData(eventDataFromDB[1].arrayOfEvents)
-  //DAY 3 ----> setEventData(eventDataFromDB[2].arrayOfEvents)
 
   return (
     <div>

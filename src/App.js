@@ -15,7 +15,18 @@ function App() {
   }])
   const [liveEvents, setLiveEvents] = useState([])
   const [dateFormatted, setDateFormatted] = useState('')
+  const [todaysActualDate, setTodaysActualDate] = useState('')
+  const [ranAlready, setRanAlready] = useState(false)
 
+
+  useEffect(() => {
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let today = `${month < 10 ? `0${month}` : `${month}`}/${date}/${year}`
+    setTodaysActualDate(today)
+  }, [])
 
   //The following grabs todays info
   useEffect(() => {
@@ -32,29 +43,28 @@ function App() {
     fetchEvents()
   }, [])
 
-  //******************************************************************************************* */
-  //The following posts the event data to the database. Will want to execute this once a day
-  // useEffect(() => {
-  //   if (eventData.length) {
-  //     axios.post('http://localhost:3001/', eventData)
-  //   }
-  // }, [eventData])
-  /*************************************************************************************************/
+
 
   //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
   useEffect(() => {
     const fetchNewEvents = async () => {
       const res = await fetch("http://localhost:3001/")
       const json = await res.json();
-      console.log('json:', json)
       setEventDataFromDB(json)
-
-      //setEventData(eventDataFromDB[0].arrayOfEvents)
     }
     fetchNewEvents()
-    console.log(eventData)
 
   }, [])
+
+  //******************************************************************************************* */
+  //The following posts the event data to the database. Will want to execute this once a day
+  useEffect(() => {
+    if (liveEvents.length && eventDataFromDB[eventDataFromDB.length - 1].todaysDate !== todaysActualDate && !ranAlready) {
+      axios.post('http://localhost:3001/', liveEvents.slice(0, 200))
+      setRanAlready(true)
+    }
+  }, [eventDataFromDB, liveEvents])
+  /*************************************************************************************************/
 
   //If date is changed, set eventData to the events from the specific date from the DB.
   //I will want to add something that changes date to null, thereby changing eventData to

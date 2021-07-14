@@ -48,7 +48,7 @@ function App() {
   //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
   useEffect(() => {
     const fetchNewEvents = async () => {
-      const res = await fetch("https://nasa-event-backend.herokuapp.com/")
+      const res = await fetch("https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/")
       const json = await res.json();
       setEventDataFromDB(json)
     }
@@ -61,7 +61,7 @@ function App() {
   //The following posts the event data to the database. Will want to execute this once a day
   useEffect(() => {
     if (liveEvents.length && eventDataFromDB[eventDataFromDB.length - 1].todaysDate !== todaysActualDate && !ranAlready) {
-      axios.post('https://nasa-event-backend.herokuapp.com/', liveEvents.slice(0, 200))
+      axios.post('https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/', liveEvents.slice(0, 200))
       setRanAlready(true)
     }
   }, [eventDataFromDB, liveEvents])

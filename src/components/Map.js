@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import LocationInfoBox from './LocationInfoBox'
+require('dotenv').config()
 const API_KEY = process.env.REACT_APP_API_KEY
 
 const Map = ({ eventData, center, zoom }) => {

@@ -26,9 +26,14 @@ router.route("/").post((req, res) => {
 })
 
 router.route("/").get((req, res) => {
-    console.log('in get')
-    Event.find()
-        .then(foundEvents => res.json(foundEvents))
+    try {
+        console.log('in get')
+        Event.find()
+            .then(foundEvents => res.json(foundEvents))
+    } catch (err) {
+        next(err)
+    }
+
 })
 
 module.exports = router;

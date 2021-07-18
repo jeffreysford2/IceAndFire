@@ -20,12 +20,12 @@ function App() {
 
 
   useEffect(() => {
-    let newDate = new Date()
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
-    let today = `${month < 10 ? `0${month}` : `${month}`}/${date}/${year}`
-    setTodaysActualDate(today)
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var todaysDate2 = mm + '/' + dd + '/' + yyyy;
+    setTodaysActualDate(todaysDate2)
   }, [])
 
   //The following grabs todays info

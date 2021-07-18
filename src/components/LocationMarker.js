@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react'
-import fireIcon from '@iconify/icons-mdi/fire-alert'
+import fireIcon from '@iconify/icons-mdi/fire'
 import snowflakeIcon from '@iconify/icons-mdi/snowflake'
 
 

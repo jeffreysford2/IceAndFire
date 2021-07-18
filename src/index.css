@@ -80,6 +80,7 @@ body {
   position: absolute;
   bottom: 60px;
 }
+
 .slider-text {
   position: absolute;
   bottom: 10px;
@@ -87,6 +88,15 @@ body {
 .slider-container {
   width: 80%;
   margin: auto;
+}
+.slider {
+  height: 0px;
+}
+.slider-section {
+  position: absolute;
+  height: 0px;
+  bottom: 0;
+  width: 80%;
 }
 .show-live-button {
   position: absolute;
@@ -105,7 +115,14 @@ body {
   transition: all 0.2s;
   background-color: rgba(104, 211, 244, 0.9);
 }
-
+@media screen and (max-width: 635px) {
+  .date-slider {
+    bottom: 90px;
+  }
+  .show-live-button {
+    bottom: 90px;
+  }
+}
 .show-live-button:hover {
   color: #000000;
   background-color: rgba(255, 255, 255, 0.5);

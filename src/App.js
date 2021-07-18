@@ -45,9 +45,7 @@ function App() {
 
 
 
-  //https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/
 
-  //http://localhost:3001/
 
   //******************************************************************************************* */
   //The following posts the event data to the database. Will want to execute this once a day
@@ -61,7 +59,9 @@ function App() {
   }, [eventDataFromDB, liveEvents])
   /*************************************************************************************************/
 
+  //https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/
 
+  //http://localhost:3001/
 
 
   //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map

@@ -53,7 +53,7 @@ const SliderComponent = (props) => {
 
 
     return (
-        <div>
+        <div className="slider">
 
             <Slider
                 className="date-slider"
@@ -74,7 +74,7 @@ const SliderComponent = (props) => {
             //onChange={handleInputChange}
             />
             {props.date !== null ? (
-                <section>
+                <section className="slider-section">
                     <Typography id="discrete-slider" className="slider-text" gutterBottom>
 
                         Date: {props.dateFormatted} (Click through dates with 'left' and 'right' arrow keys)
@@ -83,6 +83,7 @@ const SliderComponent = (props) => {
                     <button className="show-live-button" onClick={handleClick}>Show live data</button>
                 </section>
             ) : (
+
                 <Typography id="discrete-slider" className="slider-text" gutterBottom>
                     Showing Live Data (Click on timeline to view historic data)
                 </Typography>

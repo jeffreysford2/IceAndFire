@@ -55,7 +55,7 @@ function App() {
 
     if (liveEvents.length && eventDataFromDB[eventDataFromDB.length - 1].todaysDate !== todaysActualDate && !ranAlready) {
       console.log('running post to database!')
-      axios.post('http://localhost:3001/', liveEvents.slice(0, 200))
+      axios.post('https://nasa-event-backend.herokuapp.com/', liveEvents.slice(0, 200))
       setRanAlready(true)
     }
   }, [eventDataFromDB, liveEvents])
@@ -67,7 +67,7 @@ function App() {
   //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
   useEffect(() => {
     const fetchNewEvents = async () => {
-      const res = await fetch("http://localhost:3001/")
+      const res = await fetch("https://nasa-event-backend.herokuapp.com/")
       const json = await res.json();
       setEventDataFromDB(json)
     }

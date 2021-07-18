@@ -45,27 +45,35 @@ function App() {
 
 
 
-  //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
-  useEffect(() => {
-    const fetchNewEvents = async () => {
-      const res = await fetch("https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/")
-      const json = await res.json();
-      setEventDataFromDB(json)
-    }
-    fetchNewEvents()
-
-  }, [])
+  //https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/
 
   //http://localhost:3001/
+
   //******************************************************************************************* */
   //The following posts the event data to the database. Will want to execute this once a day
   useEffect(() => {
+
     if (liveEvents.length && eventDataFromDB[eventDataFromDB.length - 1].todaysDate !== todaysActualDate && !ranAlready) {
-      axios.post('https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/', liveEvents.slice(0, 200))
+      console.log('running post to database!')
+      axios.post('http://localhost:3001/', liveEvents.slice(0, 200))
       setRanAlready(true)
     }
   }, [eventDataFromDB, liveEvents])
   /*************************************************************************************************/
+
+
+
+
+  //The following gets all database data. Will need to uncomment setEventDataFromDB and send that to the map
+  useEffect(() => {
+    const fetchNewEvents = async () => {
+      const res = await fetch("http://localhost:3001/")
+      const json = await res.json();
+      setEventDataFromDB(json)
+    }
+    fetchNewEvents()
+  }, [])
+
 
   //If date is changed, set eventData to the events from the specific date from the DB.
   //I will want to add something that changes date to null, thereby changing eventData to

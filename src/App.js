@@ -50,13 +50,15 @@ function App() {
   //******************************************************************************************* */
   //The following posts the event data to the database. Will want to execute this once a day
   useEffect(() => {
-
+    // console.log('running post useEffect')
+    // console.log(eventDataFromDB[eventDataFromDB.length - 1].todaysDate)
+    // console.log(todaysActualDate)
     if (liveEvents.length && eventDataFromDB[eventDataFromDB.length - 1].todaysDate !== todaysActualDate && !ranAlready) {
       console.log('running post to database!')
       axios.post('https://nasa-event-backend.herokuapp.com/', liveEvents.slice(0, 200))
       setRanAlready(true)
     }
-  }, [eventDataFromDB, liveEvents])
+  }, [eventDataFromDB])
   /*************************************************************************************************/
 
   //https://corsanywhere.herokuapp.com/https://nasa-event-backend.herokuapp.com/
